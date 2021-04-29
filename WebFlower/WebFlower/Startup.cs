@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +37,19 @@ namespace WebFlower
                 app.UseDeveloperExceptionPage();
             }
 
+            //назва папки,де зберігатимуться фото.
+            string images = "Photos";
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), images);
+            if(!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            app.UseStaticFiles(
+                new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(directory),
+                    RequestPath="/img"
+                });
             app.UseRouting();
 
             app.UseAuthorization();
