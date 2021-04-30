@@ -26,7 +26,9 @@ namespace WebFlower
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,20 +38,24 @@ namespace WebFlower
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //назва папки,де зберігатимуться фото.
-            string images = "Photos";
-            var directory = Path.Combine(Directory.GetCurrentDirectory(), images);
-            if(!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            app.UseStaticFiles(
-                new StaticFileOptions
-                {
-                    FileProvider = new PhysicalFileProvider(directory),
-                    RequestPath="/img"
-                });
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            ////назва папки,де зберігатимуться фото.
+            //string images = "Photos";
+            //var directory = Path.Combine(Directory.GetCurrentDirectory(), images);
+            //if(!Directory.Exists(directory))
+            //{
+            //    Directory.CreateDirectory(directory);
+            //}
+            //app.UseStaticFiles(
+            //    new StaticFileOptions
+            //    {
+            //        FileProvider = new PhysicalFileProvider(directory),
+            //        RequestPath="/img"
+            //    });
+            app.UseStaticFiles();               
+                
+                
             app.UseRouting();
 
             app.UseAuthorization();

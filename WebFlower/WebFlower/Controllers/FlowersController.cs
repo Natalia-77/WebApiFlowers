@@ -11,6 +11,7 @@ namespace WebFlower.Controllers
     [ApiController]
     public class FlowersController : ControllerBase
     {
+        [HttpGet]
         public IActionResult GetResults()
         {
             return Ok(new { Name = "Rose", Family = "Rosaceae", Weight = 55 });

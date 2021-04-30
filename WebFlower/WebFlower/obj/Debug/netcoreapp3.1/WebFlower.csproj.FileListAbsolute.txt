@@ -38,3 +38,9 @@ D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\We
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.pdb
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.genruntimeconfig.cache
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.MvcApplicationPartsAssemblyInfo.cs
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.csproj.CopyComplete
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
