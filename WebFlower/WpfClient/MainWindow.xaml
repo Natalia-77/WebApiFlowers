@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClient"
+        mc:Ignorable="d"
+        Title="WpfClient" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <DataGrid x:Name ="dgFlowers" 
+                      HorizontalAlignment="Left"
+                      Height="274" 
+                      Margin="36,116,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="722" ColumnWidth="*" 
+                      IsReadOnly="True" 
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Family" Binding="{Binding Family}" />
+                    <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" />
+                    <DataGridTextColumn Header="Image" Binding="{Binding Image}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name ="btngetData"
+                    Content="Get Data"
+                    HorizontalAlignment="Left"
+                    Margin="36,62,0,0"
+                    VerticalAlignment="Top"
+                    Width="146" Height="36"
+                    Click="BtnGetData_Click"/>
+           </Grid>
+
+    </Grid>
+</Window>
