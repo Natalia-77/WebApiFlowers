@@ -26,8 +26,7 @@ namespace WpfClient.Helper
             };
 
             string data = client.DownloadString(_url);      
-            dynamic list = JsonConvert.DeserializeObject<List<FlowerVM>>(data);
-            var res = list.Image;
+            dynamic list = JsonConvert.DeserializeObject<List<FlowerVM>>(data);           
            
             return list;
 
