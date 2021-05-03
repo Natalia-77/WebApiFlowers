@@ -40,19 +40,19 @@ namespace WebFlower
             }
             app.UseSwagger();
             app.UseSwaggerUI();
-            ////назва папки,де зберігатимуться фото.
-            //string images = "Photos";
-            //var directory = Path.Combine(Directory.GetCurrentDirectory(), images);
-            //if(!Directory.Exists(directory))
-            //{
-            //    Directory.CreateDirectory(directory);
-            //}
-            //app.UseStaticFiles(
-            //    new StaticFileOptions
-            //    {
-            //        FileProvider = new PhysicalFileProvider(directory),
-            //        RequestPath="/img"
-            //    });
+            //назва папки,де зберігатимуться фото.
+            string images = "Photos";
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), images);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            app.UseStaticFiles(
+                new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(directory),
+                    RequestPath = "/img"
+                });
             app.UseStaticFiles();               
                 
                 
