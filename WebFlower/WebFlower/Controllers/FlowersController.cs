@@ -64,7 +64,6 @@ namespace WebFlower.Controllers
 
         public async Task<IActionResult>Get(string fileName)
         {
-            //string path = _webHostEnvironment.WebRootPath + "\\upload\\";
             string path = _webHostEnvironment.ContentRootPath + "\\Photos\\";
             var filepath = path + fileName + ".jpg";
             byte[] bytes = System.IO.File.ReadAllBytes(filepath);

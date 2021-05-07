@@ -1,24 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WebFlower.ModelFlowers;
-using WpfClient.Helper;
+
 
 namespace WpfClient
 {
@@ -26,38 +13,40 @@ namespace WpfClient
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-      
-        public ObservableCollection<FlowerVM> flowers = new ObservableCollection<FlowerVM>();
+    {     
+        
         public MainWindow()
         {
             InitializeComponent();
-            dgFlowers.ItemsSource = flowers;
+            //dgFlowers.ItemsSource = flowers;
         }
-        private void BtnGetData_Click(object sender, RoutedEventArgs e)
+       
+
+        private  void BtnGetData_Click(object sender, RoutedEventArgs e)
         {
-
-            FlowerWeb service = new FlowerWeb();
-            var lists = service.GetFlowers();
-
-            foreach (var p in lists)
+            using (WebClient client = new WebClient())
             {
-
-                FlowerVM prod = new FlowerVM
-                {
-                    Name = p.Name,
-                    Family = p.Family,
-                    Weight = p.Weight,
-                    Image =p.Image
-                };
-                flowers.Add(prod);
-
-
+                client.DownloadDataCompleted += asyncWeb_DownloadDataCompleted;
+                Uri url = new Uri("https://nat77.ga/api/Flowers/Search");
+                client.DownloadDataAsync(url);
             }
 
+        }
 
+        void asyncWeb_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        {           
+            try
+            {
+                string res = Encoding.Default.GetString(e.Result);
+                var list = JsonConvert.DeserializeObject<List<FlowerVM>>(res);
+                dgFlowers.ItemsSource = list;
 
-
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());               
+            }
+            
         }
     }
 }
