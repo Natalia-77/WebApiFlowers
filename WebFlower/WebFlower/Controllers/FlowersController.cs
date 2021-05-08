@@ -51,7 +51,7 @@ namespace WebFlower.Controllers
                 {
                     Name="Rosa carolina",
                     Family="Rosaceae",
-                    Weight=100,                   
+                    Weight=100,
                     Image=_url+"3.jpg"
                 },
 
@@ -60,7 +60,7 @@ namespace WebFlower.Controllers
         }
 
         //Отримати дані по окремо введеному імені.
-        [HttpGet("Name")]       
+        [HttpGet("Name")]
         public IActionResult Search(string name)
         {
             var list = new List<FlowerVM>()
@@ -92,8 +92,8 @@ namespace WebFlower.Controllers
 
             };
 
-            var result = list.Find(x=>x.Name==name);
-            if (result==null)
+            var result = list.Find(x => x.Name == name);
+            if (result == null)
             {
                 return NotFound(name);
             }
@@ -105,23 +105,54 @@ namespace WebFlower.Controllers
 
 
         //Окремо отримувати фото.
-        [HttpGet("{fileName}")]      
+        [HttpGet("{fileName}")]
         public IActionResult Get(string fileName)
         {
             string path = _webHostEnvironment.ContentRootPath + "\\Photos\\";
             var filepath = path + fileName + ".jpg";
-           
-            if(System.IO.File.Exists(filepath))
+
+            if (System.IO.File.Exists(filepath))
             {
                 byte[] bytes = System.IO.File.ReadAllBytes(filepath);
-                return File(bytes, "image/jpg");               
+                return File(bytes, "image/jpg");
             }
-           
-            return NotFound(fileName +" Not found this image!");
-           
-           
+
+            return NotFound(fileName + " Not found this image!");
+
+
+
         }
 
-       
+        [HttpPost]
+        public  ActionResult<FlowerVM> Post([FromBody]FlowerVM flower)
+        {
+            if (flower== null)
+            {
+                return BadRequest();
+            }
+
+           var res=new List <FlowerVM >();
+           res.Add(flower);
+           return Ok(flower);
+        }
+
+        //public void Post([FromBody] FlowerVM flower)
+        //{
+        //    var res = new FlowerVM()
+        //    {
+        //        Name = flower.Name,
+        //        Family = flower.Family,
+        //        Weight = flower.Weight,
+        //        Image = flower.Image
+
+        //    };
+        //    return CreatedAtAction(
+        //        nameof (GetResults),
+        //        new {Name=res.Name,
+        //            Family=res.Family,
+        //            Weight=res.Weight,
+        //            Image=res.Image },flower(res))
+        //}
+
     }
 }
