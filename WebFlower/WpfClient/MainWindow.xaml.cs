@@ -33,7 +33,7 @@ namespace WpfClient
 
         }
 
-        void asyncWeb_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        public void asyncWeb_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {           
             try
             {

@@ -59,17 +59,67 @@ namespace WebFlower.Controllers
             return Ok(list);
         }
 
+        //Отримати дані по окремо введеному імені.
+        [HttpGet("Name")]       
+        public IActionResult Search(string name)
+        {
+            var list = new List<FlowerVM>()
+
+            {
+                new FlowerVM
+                {
+                    Name = "Rose",
+                    Family = "Rosaceae",
+                    Weight = 55,
+                    Image = _url + "3.jpg"
+
+                },
+                new FlowerVM
+                {
+                    Name = "Rosa primula",
+                    Family = "Rosaceae",
+                    Weight = 85,
+                    Image = _url + "4.jpg"
+
+                },
+                new FlowerVM
+                {
+                    Name = "Rosa carolina",
+                    Family = "Rosaceae",
+                    Weight = 100,
+                    Image = _url + "3.jpg"
+                },
+
+            };
+
+            var result = list.Find(x=>x.Name==name);
+            if (result==null)
+            {
+                return NotFound(name);
+            }
+            return Ok(result);
+        }
+
+
+
+
+
         //Окремо отримувати фото.
         [HttpGet("{fileName}")]      
-
-        public async Task<IActionResult>Get(string fileName)
+        public IActionResult Get(string fileName)
         {
             string path = _webHostEnvironment.ContentRootPath + "\\Photos\\";
             var filepath = path + fileName + ".jpg";
-            byte[] bytes = System.IO.File.ReadAllBytes(filepath);
-
-            //повертає масив байт і контент-тайп
-            return File(bytes, "image/jpg");
+           
+            if(System.IO.File.Exists(filepath))
+            {
+                byte[] bytes = System.IO.File.ReadAllBytes(filepath);
+                return File(bytes, "image/jpg");               
+            }
+           
+            return NotFound(fileName +" Not found this image!");
+           
+           
         }
 
        
