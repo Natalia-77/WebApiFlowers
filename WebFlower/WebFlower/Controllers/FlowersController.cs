@@ -123,20 +123,20 @@ namespace WebFlower.Controllers
 
         }
 
-        [HttpPost]
-        public  ActionResult<FlowerVM> Post([FromBody]FlowerVM flower)
-        {
-            if (flower== null)
-            {
-                return BadRequest();
-            }
+        //[HttpPost]
+        //public ActionResult<FlowerVM> Post([FromBody] FlowerVM flower)
+        //{
+        //    if (flower == null)
+        //    {
+        //        return BadRequest();
+        //    }
 
-           var res=new List <FlowerVM >();
-           res.Add(flower);
-           return Ok(flower);
-        }
+        //    var res = new List<FlowerVM>();
+        //    res.Add(flower);
+        //    return Ok(flower);
+        //}
 
-        //public void Post([FromBody] FlowerVM flower)
+        //public IActionResult Post([FromBody] FlowerVM flower)
         //{
         //    var res = new FlowerVM()
         //    {
@@ -147,11 +147,14 @@ namespace WebFlower.Controllers
 
         //    };
         //    return CreatedAtAction(
-        //        nameof (GetResults),
-        //        new {Name=res.Name,
-        //            Family=res.Family,
-        //            Weight=res.Weight,
-        //            Image=res.Image },flower(res))
+        //        nameof(GetResults),
+        //        new
+        //        {
+        //            Name = res.Name,
+        //            Family = res.Family,
+        //            Weight = res.Weight,
+        //            Image = res.Image
+        //        }, flower);
         //}
 
     }
