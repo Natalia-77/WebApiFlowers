@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using WebFlower.Entities;
 using WebFlower.ModelFlowers;
 
 namespace WebFlower.Controllers
@@ -16,10 +17,12 @@ namespace WebFlower.Controllers
     public class FlowersController : ControllerBase
     {
         //надає відомості про середовище веб-розміщення ,в якому виконується додаток.
-        public static IWebHostEnvironment _webHostEnvironment;
+        private IWebHostEnvironment _webHostEnvironment;
+        private EFContext _context;
         public string _url = "https://nat77.ga/img/";
-        public FlowersController(IWebHostEnvironment webHostEnvironment)
+        public FlowersController(EFContext context, IWebHostEnvironment webHostEnvironment)
         {
+            _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -29,33 +32,42 @@ namespace WebFlower.Controllers
         public IActionResult GetResults()
         {
 
-            var list = new List<FlowerVM>()
-            {
-                new FlowerVM
-                {
-                    Name="Rose",
-                    Family="Rosaceae",
-                    Weight=55,
-                    Image=_url+"3.jpg"
+            //var list = new List<FlowerVM>()
+            //{
+            //    new FlowerVM
+            //    {
+            //        Name="Rose",
+            //        Family="Rosaceae",
+            //        Weight=55,
+            //        Image=_url+"3.jpg"
 
-                },
-                new FlowerVM
-                {
-                    Name="Rosa primula",
-                    Family="Rosaceae",
-                    Weight=85,
-                    Image=_url+"4.jpg"
+            //    },
+            //    new FlowerVM
+            //    {
+            //        Name="Rosa primula",
+            //        Family="Rosaceae",
+            //        Weight=85,
+            //        Image=_url+"4.jpg"
 
-                },
-                new FlowerVM
-                {
-                    Name="Rosa carolina",
-                    Family="Rosaceae",
-                    Weight=100,
-                    Image=_url+"3.jpg"
-                },
+            //    },
+            //    new FlowerVM
+            //    {
+            //        Name="Rosa carolina",
+            //        Family="Rosaceae",
+            //        Weight=100,
+            //        Image=_url+"3.jpg"
+            //    },
 
-            };
+            //};
+            var list = _context.Flowers.Select(
+                x => new
+                {x.Id,
+                x.Name,
+                x.Family,
+                x.Weight,
+                x.Image
+                });              
+                       
             return Ok(list);
         }
 
@@ -63,45 +75,41 @@ namespace WebFlower.Controllers
         [HttpGet("Name")]
         public IActionResult Search(string name)
         {
-            var list = new List<FlowerVM>()
+            //var list = new List<FlowerVM>()
+            //{
+            //    new FlowerVM
+            //    {
+            //        Name = "Rose",
+            //        Family = "Rosaceae",
+            //        Weight = 55,
+            //        Image = _url + "3.jpg"
 
-            {
-                new FlowerVM
-                {
-                    Name = "Rose",
-                    Family = "Rosaceae",
-                    Weight = 55,
-                    Image = _url + "3.jpg"
+            //    },
+            //    new FlowerVM
+            //    {
+            //        Name = "Rosa primula",
+            //        Family = "Rosaceae",
+            //        Weight = 85,
+            //        Image = _url + "4.jpg"
 
-                },
-                new FlowerVM
-                {
-                    Name = "Rosa primula",
-                    Family = "Rosaceae",
-                    Weight = 85,
-                    Image = _url + "4.jpg"
+            //    },
+            //    new FlowerVM
+            //    {
+            //        Name = "Rosa carolina",
+            //        Family = "Rosaceae",
+            //        Weight = 100,
+            //        Image = _url + "3.jpg"
+            //    },
 
-                },
-                new FlowerVM
-                {
-                    Name = "Rosa carolina",
-                    Family = "Rosaceae",
-                    Weight = 100,
-                    Image = _url + "3.jpg"
-                },
-
-            };
-
-            var result = list.Find(x => x.Name == name);
-            if (result == null)
+            //};
+            var res = _context.Flowers.FirstOrDefault(y=>y.Name==name);
+           
+            if (res == null)
             {
                 return NotFound(name);
             }
-            return Ok(result);
+            return Ok(res);
         }
-
-
-
 
 
         //Окремо отримувати фото.
