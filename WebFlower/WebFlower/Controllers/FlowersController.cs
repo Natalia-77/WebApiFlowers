@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using WebFlower.Entities;
+using WebFlower.Entities.Domain;
 using WebFlower.ModelFlowers;
 
 namespace WebFlower.Controllers
@@ -106,7 +107,8 @@ namespace WebFlower.Controllers
            
             if (res == null)
             {
-                return NotFound(name);
+                //return NotFound($"Flower with { name} not found");
+                return NotFound(new {message="There is no name!" });
             }
             return Ok(res);
         }
@@ -130,6 +132,17 @@ namespace WebFlower.Controllers
 
 
         }
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult AddCar([FromBody] Flower flower)
+        {
+            _context.Flowers.Add(flower);
+            _context.SaveChanges();
+            return Ok(new { message = "Додано" });
+        }
+
+
 
         //[HttpPost]
         //public ActionResult<FlowerVM> Post([FromBody] FlowerVM flower)

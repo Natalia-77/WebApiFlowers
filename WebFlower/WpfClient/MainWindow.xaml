@@ -8,7 +8,7 @@
         Title="WpfClient" Height="450" Width="800">
     <Grid>
         <Grid>
-            
+
             <DataGrid x:Name ="dgFlowers" 
                       HorizontalAlignment="Left"
                       Height="274" 
@@ -16,12 +16,12 @@
                        VerticalAlignment="Top" Width="722" ColumnWidth="*" 
                       AutoGenerateColumns="False"
                       SelectedItem="{Binding SelectedItem}" >
-               
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Family" Binding="{Binding Family}" />
-                    <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" />                    
-                   
+                    <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" />
+
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -57,7 +57,14 @@
                     VerticalAlignment="Top"
                     Width="146" Height="36"
                     Click="BtnGetData_Click"/>
-           </Grid>
+            <Button x:Name="btnPost"
+                    Content="Post"
+                    HorizontalAlignment="Left"
+                    Background="#AFEEEE"
+                    Margin="231,62,0,0"
+                    VerticalAlignment="Top" 
+                    Width="146" Height="36" Click="btnPost_Click"/>
+        </Grid>
 
     </Grid>
 </Window>

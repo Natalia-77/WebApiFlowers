@@ -12,6 +12,8 @@ namespace WebFlower
 {
     public static class ConfigMigration
     {
+        //public static string _url = "https://nat77.ga/img/";
+
         public static void ConfigMigrations(this IApplicationBuilder application)
         {
             using (var serviceScope = application.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -37,19 +39,19 @@ namespace WebFlower
                     {
                         new Flower
                         {
-                            Name="Rosa Prince",
-                            Family="Rosasea",
-                            Weight=158,
-                            Image= "/img/6.jpg",
+                            Name="Afrodita Crocus",
+                            Family="Rosasea elamia",
+                            Weight=35,
+                            //Image="https://nat77.ga/img/9.jpg" ,
 
                         },
-                        new Flower
-                        {
-                            Name="Rosa Kira",
-                            Family="Rosasea",
-                            Weight=189,
-                            Image= "/img/9.jpg",
-                        },
+                        //new Flower
+                        //{
+                        //    Name="Rosa Kira",
+                        //    Family="Rosasea",
+                        //    Weight=189,
+                        //    Image= _url+"8.jpg", 
+                        //},
 
                     };
                     context.Flowers.AddRange(flowers);
