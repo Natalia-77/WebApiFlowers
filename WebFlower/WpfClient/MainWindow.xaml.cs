@@ -56,7 +56,7 @@ namespace WpfClient
         }
 
         
-        //===========Те,що вчора зробила=========
+        //===========Моя заначка=========
         //public async Task PostRequest()
         //{
         //    Flower model = new Flower
@@ -94,9 +94,7 @@ namespace WpfClient
         //}
 
         private void btnPost_Click(object sender, RoutedEventArgs e)
-        {
-            //Task.Run(() => PostRequest());
-           
+        {          
             new PostWindow().ShowDialog();
         }
 
