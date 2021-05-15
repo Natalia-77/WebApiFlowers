@@ -59,7 +59,7 @@ namespace WpfClient
                 n.Name,
                 n.Family,
                 n.Weight,
-                Image = "fgfhf"
+                
 
             });
 
