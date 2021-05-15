@@ -51,7 +51,8 @@
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
             <Button x:Name ="btngetData"
-                    Content="Get Data"
+                    Content="Get"
+                    Background="#A8DAF6"
                     HorizontalAlignment="Left"
                     Margin="36,62,0,0"
                     VerticalAlignment="Top"
@@ -60,10 +61,28 @@
             <Button x:Name="btnPost"
                     Content="Post"
                     HorizontalAlignment="Left"
-                    Background="#AFEEEE"
+                    Background="#70ED86"
                     Margin="231,62,0,0"
                     VerticalAlignment="Top" 
                     Width="146" Height="36" Click="btnPost_Click"/>
+            <Button x:Name="btnPut"
+                    Content="Put"
+                    HorizontalAlignment="Left"
+                    Background="#F2B822"
+                    Margin="430,62,0,0"
+                    VerticalAlignment="Top" 
+                    Width="146" Height="36" 
+                    Click="btnPut_Click"/>
+            <Button x:Name="btnDelete"
+                    Content="Delete"
+                    HorizontalAlignment="Left"
+                    Background="#FF0000"
+                    Margin="615,62,0,0"
+                    VerticalAlignment="Top" 
+                    Width="146" Height="36" Click="btnDelete_Click"/>
+
+
+
         </Grid>
 
     </Grid>

@@ -1,16 +1,13 @@
 ﻿using Newtonsoft.Json;
-using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
+using WebFlower.Entities;
 using WebFlower.Entities.Domain;
-using WebFlower.ModelFlowers;
+
 
 
 namespace WpfClient
@@ -20,11 +17,13 @@ namespace WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private static readonly HttpClient _httpClient = new HttpClient();
+        private EFContext _context = new EFContext();
+        public long _id { get; set; }
 
         public MainWindow()
         {
-            InitializeComponent();
+            Thread.Sleep(2000);
+            InitializeComponent();        
             
         }
 
@@ -56,111 +55,91 @@ namespace WpfClient
 
         }
 
-
+        
         //===========Те,що вчора зробила=========
-        public async Task<bool> PostRequest()
-        {
-            Flower model = new Flower
-            {
-                Name = "test2",
-                Family = "family_test_2",
-                Weight = 1000,
-                Image = "2021-Ford-Th999underbird-Rebord.jpg"
-            };
-
-            WebRequest request = WebRequest.Create("http://localhost:5000/api/Flowers/add");
-            {
-                request.Method = "POST";
-                request.ContentType = "application/json";
-
-            };
-            string json = JsonConvert.SerializeObject(model);
-            byte[] bytes = Encoding.UTF8.GetBytes(json);
-
-            using (Stream stream = await request.GetRequestStreamAsync())
-            {
-                stream.Write(bytes, 0, bytes.Length);
-            }
-
-            try
-            {
-                await request.GetResponseAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-                return false;
-            }
-        }
-
-        private void btnPost_Click(object sender, RoutedEventArgs e)
-        {
-            Task.Run(() => PostRequest());
-
-        }
-
-        //================================================
-
-
-        //public void RequestForPost()
+        //public async Task PostRequest()
         //{
-        //    // Uri url = new Uri("https://nat77.ga/api/Flowers/add");
+        //    Flower model = new Flower
+        //    {
+        //        Name = "test3",
+        //        Family = "family_test_3",
+        //        Weight = 1000,
+        //        Image = "satin.jpg"
+        //    };
 
-        //    // Create a request using a URL that can receive a post.
         //    WebRequest request = WebRequest.Create("http://localhost:5000/api/Flowers/add");
-        //    // Set the Method property of the request to POST.
-        //    request.Method = "POST";
-
-        //    // Create POST data and convert it to a byte array.
-        //    string postData = JsonConvert.SerializeObject(new
         //    {
-        //        Name = "ytr",
-        //    Family = "qqq",
-        //    Weight = 55555,
-        //    Image = "hyu"
-        //});
-        //byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+        //        request.Method = "POST";
+        //        request.ContentType = "application/json";
 
-        //// Set the ContentType property of the WebRequest.
-        //request.ContentType = "application/json";
-        //// Set the ContentLength property of the WebRequest.
-        //request.ContentLength = byteArray.Length;
+        //    };
+        //    string json = JsonConvert.SerializeObject(model);
+        //    byte[] bytes = Encoding.UTF8.GetBytes(json);
 
-        //// Get the request stream.
-        //Stream dataStream = request.GetRequestStream();
-        //// Write the data to the request stream.
-        //dataStream.Write(byteArray, 0, byteArray.Length);
-        //// Close the Stream object.
-        //dataStream.Close();
-
-        //try
-        //{
-        //    // Get the response.
-        //    WebResponse response = request.GetResponse();
-        //    // Display the status.
-        //    Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-
-        //    // Get the stream containing content returned by the server.
-        //    // The using block ensures the stream is automatically closed.
-        //    using (dataStream = response.GetResponseStream())
+        //    using (Stream stream = await request.GetRequestStreamAsync())
         //    {
-        //        // Open the stream using a StreamReader for easy access.
-        //        StreamReader reader = new StreamReader(dataStream);
-        //        // Read the content.
-        //        string responseFromServer = reader.ReadToEnd();
-        //        // Display the content.
-        //        Console.WriteLine(responseFromServer);
+        //        stream.Write(bytes, 0, bytes.Length);
         //    }
 
-        //        // Close the response.
-        //        response.Close();
+        //    try
+        //    {
+        //        await request.GetResponseAsync();
+        //        //return true;
         //    }
         //    catch (Exception ex)
         //    {
-        //        MessageBox.Show(ex.Message);
+        //        MessageBox.Show(ex.Message.ToString());
+        //        //return false;
         //    }
         //}
+
+        private void btnPost_Click(object sender, RoutedEventArgs e)
+        {
+            //Task.Run(() => PostRequest());
+           
+            new PostWindow().ShowDialog();
+        }
+
+        private void btnPut_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgFlowers.SelectedItem != null)
+            {
+                if (dgFlowers.SelectedItem is Flower)
+                {
+                    var flowView = dgFlowers.SelectedItem as Flower;
+                    long id = flowView.Id;
+                    _id = id;
+                    MessageBox.Show(_id.ToString());
+                }
+            }
+
+            PutWindow edit = new PutWindow(_id,_context);
+            edit.ShowDialog();
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgFlowers.SelectedItem != null)
+            {
+                if (dgFlowers.SelectedItem is Flower)
+                {
+                    var flowerView = dgFlowers.SelectedItem as Flower;
+                    long id = flowerView.Id;
+                    _id = id;
+                    MessageBox.Show(_id.ToString());
+                }
+            }
+
+            DeleteWindow delete = new DeleteWindow(_id, _context);
+            delete.ShowDialog();
+
+        }
+      
+
+        
+
+
 
 
 

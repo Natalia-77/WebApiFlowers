@@ -1,15 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using WebFlower.Entities;
 using WebFlower.Entities.Domain;
-using WebFlower.ModelFlowers;
 
 namespace WebFlower.Controllers
 {
@@ -27,39 +20,13 @@ namespace WebFlower.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
+        #region Get
 
         [HttpGet]
         [Route("Search")]
         public IActionResult GetResults()
         {
 
-            //var list = new List<FlowerVM>()
-            //{
-            //    new FlowerVM
-            //    {
-            //        Name="Rose",
-            //        Family="Rosaceae",
-            //        Weight=55,
-            //        Image=_url+"3.jpg"
-
-            //    },
-            //    new FlowerVM
-            //    {
-            //        Name="Rosa primula",
-            //        Family="Rosaceae",
-            //        Weight=85,
-            //        Image=_url+"4.jpg"
-
-            //    },
-            //    new FlowerVM
-            //    {
-            //        Name="Rosa carolina",
-            //        Family="Rosaceae",
-            //        Weight=100,
-            //        Image=_url+"3.jpg"
-            //    },
-
-            //};
             var list = _context.Flowers.Select(
                 x => new
                 {x.Id,
@@ -75,34 +42,7 @@ namespace WebFlower.Controllers
         //Отримати дані по окремо введеному імені.
         [HttpGet("Name")]
         public IActionResult Search(string name)
-        {
-            //var list = new List<FlowerVM>()
-            //{
-            //    new FlowerVM
-            //    {
-            //        Name = "Rose",
-            //        Family = "Rosaceae",
-            //        Weight = 55,
-            //        Image = _url + "3.jpg"
-
-            //    },
-            //    new FlowerVM
-            //    {
-            //        Name = "Rosa primula",
-            //        Family = "Rosaceae",
-            //        Weight = 85,
-            //        Image = _url + "4.jpg"
-
-            //    },
-            //    new FlowerVM
-            //    {
-            //        Name = "Rosa carolina",
-            //        Family = "Rosaceae",
-            //        Weight = 100,
-            //        Image = _url + "3.jpg"
-            //    },
-
-            //};
+        {            
             var res = _context.Flowers.FirstOrDefault(y=>y.Name==name);
            
             if (res == null)
@@ -129,54 +69,70 @@ namespace WebFlower.Controllers
 
             return NotFound(fileName + " Not found this image!");
 
-
-
         }
+        #endregion
+
+        #region Post
 
         [HttpPost]
         [Route("add")]
-        public IActionResult AddCar([FromBody] Flower flower)
+        public IActionResult AddFlower([FromBody] Flower flower)
         {
             _context.Flowers.Add(flower);
             _context.SaveChanges();
-            return Ok(new { message = "Додано" });
+            return Ok();
         }
 
+        #endregion
 
 
-        //[HttpPost]
-        //public ActionResult<FlowerVM> Post([FromBody] FlowerVM flower)
-        //{
-        //    if (flower == null)
-        //    {
-        //        return BadRequest();
-        //    }
+        #region Put
+        [HttpPut("{id}")]          
+        public IActionResult Update(int id,[FromBody] Flower flower)
+        {
 
-        //    var res = new List<FlowerVM>();
-        //    res.Add(flower);
-        //    return Ok(flower);
-        //}
+            if (flower == null )
+            {
+                return BadRequest();              
+            }
 
-        //public IActionResult Post([FromBody] FlowerVM flower)
-        //{
-        //    var res = new FlowerVM()
-        //    {
-        //        Name = flower.Name,
-        //        Family = flower.Family,
-        //        Weight = flower.Weight,
-        //        Image = flower.Image
+            var res = _context.Flowers.FirstOrDefault(x => x.Id == id);
 
-        //    };
-        //    return CreatedAtAction(
-        //        nameof(GetResults),
-        //        new
-        //        {
-        //            Name = res.Name,
-        //            Family = res.Family,
-        //            Weight = res.Weight,
-        //            Image = res.Image
-        //        }, flower);
-        //}
+            res.Name = flower.Name;
+            res.Family = flower.Family;
+            res.Weight = flower.Weight;
+            res.Image = flower.Image;
 
+            if (res == null)
+            {
+                return NotFound();
+            }
+                       
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        #endregion
+
+
+        #region Delete
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            var del_item = _context.Flowers.Find(id);
+
+            if (del_item == null)
+            {
+                return NotFound();
+            }
+
+            _context.Flowers.Remove(del_item);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        #endregion
     }
 }

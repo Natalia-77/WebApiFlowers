@@ -10,11 +10,26 @@ namespace WebFlower.Entities
                                               AppUserRole, IdentityUserLogin<long>,
                                               IdentityRoleClaim<long>, IdentityUserToken<long>>
     {
+        public EFContext ()           
+        {
+        }
+
         public EFContext(DbContextOptions<EFContext> options)
             : base(options)
         {
 
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql(@"Server=91.238.103.51;Port=5743;Database=nataliadb;User Id=natalia;Password=$544$B77w**G)K$t!Ube22}77b;");
+            }
+
+           
+        }
+
+
 
         public DbSet<Flower> Flowers { get; set; }
 
