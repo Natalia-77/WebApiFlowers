@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WpfClient" xmlns:application="clr-namespace:WebFlower.ModelFlowers;assembly=WebFlower"
         mc:Ignorable="d"
         Title="PostWindow" Height="450" Width="800">
-   
-    <Grid>
+
+    <Grid Margin="25,10,25,10">
 
         <Grid.Resources>
             <Style TargetType="Button" x:Key="FirstOne" >
@@ -28,12 +28,12 @@
                Width="216"/>
         <Label Content="Введіть імя:" 
                HorizontalAlignment="Left"
-               Margin="43,92,0,0" 
+               Margin="36,54,0,0" 
                VerticalAlignment="Top"
                Width="100"/>
         <TextBox x:Name="tbname"
                  HorizontalAlignment="Left"
-                 Margin="214,96,0,0"
+                 Margin="204,62,0,0"
                  Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"   
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
@@ -54,29 +54,29 @@
 
         <Label Content="Сімя:"
                HorizontalAlignment="Left" 
-               Margin="43,139,0,0"
+               Margin="43,99,0,0"
                VerticalAlignment="Top"/>
         <Label Content="Weight:" HorizontalAlignment="Left" 
-               Margin="43,218,0,0"
+               Margin="43,148,0,0"
                VerticalAlignment="Top"/>
-        <TextBox x:Name="tbweight"                   
-            HorizontalAlignment="Left"
-                   Margin="214,215,0,0"
+        <TextBox   x:Name="tbweight"                   
+                   HorizontalAlignment="Left"
+                   Margin="204,148,0,0"
                    Text="{Binding Weight,UpdateSourceTrigger=PropertyChanged}"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top"
-                   Height="41"
+                   Height="26"
                    Width="120"/>
         <Button Content="Вибрати фото"
                 HorizontalAlignment="Left"
-                Margin="222,275,0,0"
+                Margin="214,207,0,0"
                 VerticalAlignment="Top"
                 Style="{StaticResource FirstOne}"
                 Height="26"
-                Width="86" Click=" btn_select_photo"/>
+                Width="110" Click=" btn_select_photo"/>
         <Button Content="Зберегти" 
                 HorizontalAlignment="Left"
-                Margin="222,322,0,0"
+                Margin="86,207,0,0"
                 Style="{StaticResource FirstOne}"
                 VerticalAlignment="Top"
                 Width="86"
@@ -84,7 +84,7 @@
 
         <TextBox x:Name="tbfamily"
                  HorizontalAlignment="Left"
-                 Margin="212,143,0,0"
+                 Margin="204,107,0,0"
                  Text="{Binding Family,UpdateSourceTrigger=PropertyChanged}"               
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
@@ -102,6 +102,19 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
+        <DataGrid 
+             Name="dg_errors"
+             AutoGenerateColumns="false"
+             Margin="33,254,175,10"
+             SelectedItem="{Binding SelectedItem}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Error"
+                                    Width="*"
+                                    Binding="{Binding Errorlist}"
+                                    FontSize="10"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
         <!--<Label x:Name="lblName"
                    FontSize="16"
                    Background="#FFEBCD"

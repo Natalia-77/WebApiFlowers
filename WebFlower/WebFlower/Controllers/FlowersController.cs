@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using WebFlower.Entities;
 using WebFlower.Entities.Domain;
+using WebFlower.ModelFlowers;
 
 namespace WebFlower.Controllers
 {
@@ -76,10 +77,10 @@ namespace WebFlower.Controllers
 
         [HttpPost]
         [Route("add")]
-        public IActionResult AddFlower([FromBody] Flower flower)
+        public IActionResult AddFlower([FromBody] FlowerView flower)
         {
-            _context.Flowers.Add(flower);
-            _context.SaveChanges();
+            //_context.Flowers.Add(flower);
+            //_context.SaveChanges();
             return Ok();
         }
 
