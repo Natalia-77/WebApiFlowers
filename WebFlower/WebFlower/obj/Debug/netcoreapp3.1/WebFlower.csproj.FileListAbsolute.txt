@@ -26,7 +26,6 @@ D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\We
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\WebFlower.runtimeconfig.dev.json
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\WebFlower.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\WebFlower.pdb
-D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.csprojAssemblyReference.cache
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.AssemblyInfoInputs.cache
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.AssemblyInfo.cs
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.csproj.CoreCompileInputs.cache
@@ -70,3 +69,4 @@ D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Np
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.csprojAssemblyReference.cache

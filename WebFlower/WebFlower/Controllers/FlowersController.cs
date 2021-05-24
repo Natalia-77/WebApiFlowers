@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 using WebFlower.Entities;
 using WebFlower.Entities.Domain;
 using WebFlower.ModelFlowers;
@@ -77,10 +78,17 @@ namespace WebFlower.Controllers
 
         [HttpPost]
         [Route("add")]
-        public IActionResult AddFlower([FromBody] FlowerView flower)
+        public IActionResult AddFlower([FromBody] FlowerView flow)
         {
-            //_context.Flowers.Add(flower);
-            //_context.SaveChanges();
+            _context.Flowers.Add(new Flower
+            {
+                Name = flow.Name,
+                Family = flow.Family,
+                Weight = flow.Weight,
+                Image = flow.Image
+
+            });
+            _context.SaveChanges();        
             return Ok();
         }
 
