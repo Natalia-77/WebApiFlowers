@@ -16,7 +16,7 @@ namespace WebFlower.ModelFlowers
         [Required, Range(1, 300, ErrorMessage = "неправильні межі дозволених значень")]
         public int Weight { get; set; }
 
-        [Required(ErrorMessage = "{0} не може бути порожнім"), StringLength(255, ErrorMessage = "Перевищено ліміт введених символів!")]
+        [Required(ErrorMessage = "{0} не може бути порожнім")]//, StringLength(255, ErrorMessage = "Перевищено ліміт введених символів!")]
         public string Image { get; set; }
 
     }

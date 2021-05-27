@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+O2kSlg9omjzEKDqntlosj5sku02RUJa6LXTWWYivYwVH71mLU4dyJtUFwrr7yS+KE6RoHnlkGQA+O+jSlLYVQ==",
+  "dgSpecHash": "CtbWbkDRBub4nvnTiJwi89SLmjEUHJLtze89dt97Q7AnVmH+jL0jwGoi5YBHGSKpG1jFUSt1o2GlPZT79quuGA==",
   "success": true,
   "projectFilePath": "D:\\Natalia\\Project1\\WebApiFlowers\\WebFlower\\WebFlower\\WebFlower.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,9 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.14\\microsoft.extensions.logging.abstractions.3.1.14.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.options\\3.1.14\\microsoft.extensions.options.3.1.14.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.14\\microsoft.extensions.primitives.3.1.14.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.4\\microsoft.netcore.platforms.3.1.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\npgsql\\4.1.8\\npgsql.4.1.8.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\3.1.11\\npgsql.entityframeworkcore.postgresql.3.1.11.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.3\\swashbuckle.aspnetcore.swagger.6.1.3.nupkg.sha512",
@@ -38,6 +40,7 @@
     "C:\\Users\\user\\.nuget\\packages\\system.collections.immutable\\1.7.1\\system.collections.immutable.1.7.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.drawing.common\\4.7.2\\system.drawing.common.4.7.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
   "logs": []

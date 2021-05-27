@@ -31,6 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "WebFlower/1.0.0": {
         "dependencies": {
+          "HelperLibrary": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.14",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.14",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "3.1.11",
@@ -622,6 +623,7 @@
           "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Microsoft.NETCore.Platforms/3.1.4": {},
       "Microsoft.OpenApi/1.2.3": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -631,6 +633,11 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+        }
+      },
+      "Microsoft.Win32.SystemEvents/4.7.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.4"
         }
       },
       "Npgsql/4.1.8": {
@@ -730,7 +737,41 @@
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
+      "System.Drawing.Common/4.7.2": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.4",
+          "Microsoft.Win32.SystemEvents": "4.7.0"
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.2",
+            "fileVersion": "4.700.21.6905"
+          },
+          "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.2",
+            "fileVersion": "4.700.21.6905"
+          }
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
+        }
+      },
       "System.Runtime.CompilerServices.Unsafe/4.6.0": {},
+      "HelperLibrary/1.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "4.7.2"
+        },
+        "runtime": {
+          "HelperLibrary.dll": {}
+        },
+        "compile": {
+          "HelperLibrary.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -2504,12 +2545,26 @@
       "path": "microsoft.extensions.primitives/3.1.14",
       "hashPath": "microsoft.extensions.primitives.3.1.14.nupkg.sha512"
     },
+    "Microsoft.NETCore.Platforms/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9/y05/CuxE+j184Nr4KihhB9KcUkvGojmD4JV4Vt/mHhVZR+eOCD5WCM+CXye9K0OFMsaPXbN+IcaIpjgBGZmg==",
+      "path": "microsoft.netcore.platforms/3.1.4",
+      "hashPath": "microsoft.netcore.platforms.3.1.4.nupkg.sha512"
+    },
     "Microsoft.OpenApi/1.2.3": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "path": "microsoft.openapi/1.2.3",
       "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mtVirZr++rq+XCDITMUdnETD59XoeMxSpLRIII7JRI6Yj0LEDiO1pPn0ktlnIj12Ix8bfvQqQDMMIF9wC98oCA==",
+      "path": "microsoft.win32.systemevents/4.7.0",
+      "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
     "Npgsql/4.1.8": {
       "type": "package",
@@ -2567,12 +2622,24 @@
       "path": "system.diagnostics.diagnosticsource/4.7.1",
       "hashPath": "system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
     },
+    "System.Drawing.Common/4.7.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I2y4KBK3VCvU/WqE2xv7NjQ67maXHttkFSHYKgU2evrG9Yqh0oFjfORXt5hZTk+BVjdyFo2h0/YQZsca33BGmg==",
+      "path": "system.drawing.common/4.7.2",
+      "hashPath": "system.drawing.common.4.7.2.nupkg.sha512"
+    },
     "System.Runtime.CompilerServices.Unsafe/4.6.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw==",
       "path": "system.runtime.compilerservices.unsafe/4.6.0",
       "hashPath": "system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    },
+    "HelperLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

@@ -70,3 +70,7 @@ D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\Np
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\obj\Debug\netcoreapp3.1\WebFlower.csprojAssemblyReference.cache
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\HelperLibrary.dll
+D:\Natalia\Project1\WebApiFlowers\WebFlower\WebFlower\bin\Debug\netcoreapp3.1\HelperLibrary.pdb

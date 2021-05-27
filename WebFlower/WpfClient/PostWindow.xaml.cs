@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using HelperLibrary;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace WpfClient
     public partial class PostWindow : Window
     {
         private string file_selected = string.Empty;
-        public string file_name { get; set; }
+        public string File_name { get; set; }
+        public string File_base { get; set; }
 
         public PostWindow()
         {            
@@ -33,18 +35,20 @@ namespace WpfClient
         //Кнопка для вибору фото
         private void btn_select_photo(object sender, RoutedEventArgs e)
         {
-            Bitmap image;
-            OpenFileDialog dlg = new OpenFileDialog();
-
-            dlg.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;" +
-                "*.PNG|All files (*.*)|*.*";
+            //Bitmap image;
+            OpenFileDialog dlg = new OpenFileDialog
+            {
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;" +
+                "*.PNG|All files (*.*)|*.*"
+            };
 
             if (dlg.ShowDialog() == true)
             {
                 try
                 {
-                    image = new Bitmap(dlg.FileName);
-                    file_selected = dlg.FileName;
+                    File_base = dlg.FileName;
+                    //image = new Bitmap(dlg.FileName);
+                    //file_selected = dlg.FileName;
                 }
                 catch
                 {
@@ -54,49 +58,36 @@ namespace WpfClient
         }
 
         //Кнопка зберігання.
-        private void btn_save_Click(object sender, RoutedEventArgs e)
+        private  void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            _ = PostRequest();
+             _ = PostRequest();
+            //await Task.Run(() => PostRequest());
         }
 
 
-        public async Task PostRequest()
+        public async Task<bool> PostRequest()
         {
-            if (!string.IsNullOrEmpty(file_selected))
-            {
-
-                var extension = System.IO.Path.GetExtension(file_selected);
-                var imageName = System.IO.Path.GetFileNameWithoutExtension(file_selected) + extension;
-                var dir = Directory.GetCurrentDirectory();
-                var saveDir = System.IO.Path.Combine(dir, "Photos");
-                // if (!Directory.Exists(saveDir))
-                // Directory.CreateDirectory(saveDir);
-                var fileSave = System.IO.Path.Combine(saveDir, imageName);
-
-
-                var bmp = ResizeImage.ResizeOrigImg(
-                    new Bitmap(System.Drawing.Image.FromFile(file_selected)), 75, 75);
-
-                bmp.Save(fileSave, ImageFormat.Jpeg);
-                file_name = fileSave;
-
-            }
-
-
-            WebRequest request = WebRequest.Create("http://localhost:5000/api/Flowers/add");
+            string base64 = ImageConverterBase.ConvertToBase(File_base);
+            //WebRequest request = WebRequest.Create("http://localhost:5000/api/Flowers/add");
+            var applic = Application.Current as IGetConfiguration;
+            var serv_url=applic.Configuration.GetSection("Url").Value;
+             WebRequest request = WebRequest.Create($"{serv_url}api/Flowers/add");
             {
                 request.Method = "POST";
                 request.ContentType = "application/json";
 
             };
+            int.TryParse(tbweight.Text, out int resparse);
             string json = JsonConvert.SerializeObject(new
             {
+                
                 Name = tbname.Text.ToString(),
-                Family = tbfamily.Text.ToString(),
-                Weight = int.Parse(tbweight.Text),
-                Image = file_name
+                Family = tbfamily.Text.ToString(),               
+                Weight=resparse,
+                Image = base64
 
             });
+
             byte[] bytes = Encoding.UTF8.GetBytes(json);
 
             using (Stream stream = await request.GetRequestStreamAsync())
@@ -106,8 +97,8 @@ namespace WpfClient
 
             try
             {
-                await request.GetResponseAsync();               
-
+                await request.GetResponseAsync();
+                return true;
             }
             catch (WebException e)
             {
@@ -127,13 +118,13 @@ namespace WpfClient
 
                     dg_errors.ItemsSource = eror_list;
                 }
-
+                return false;
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
-
+                return false;
             }
         }
         
