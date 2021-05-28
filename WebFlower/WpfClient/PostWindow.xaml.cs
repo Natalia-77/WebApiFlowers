@@ -22,7 +22,7 @@ namespace WpfClient
     /// </summary>
     public partial class PostWindow : Window
     {
-        private string file_selected = string.Empty;
+       // private string file_selected = string.Empty;
         public string File_name { get; set; }
         public string File_base { get; set; }
 
@@ -47,8 +47,6 @@ namespace WpfClient
                 try
                 {
                     File_base = dlg.FileName;
-                    //image = new Bitmap(dlg.FileName);
-                    //file_selected = dlg.FileName;
                 }
                 catch
                 {
@@ -102,9 +100,13 @@ namespace WpfClient
             }
             catch (WebException e)
             {
+
+               
                 using (WebResponse response = e.Response)
                 {
-
+                    
+                    HttpWebResponse web= (HttpWebResponse)response;
+                    MessageBox.Show("Error-->>>" + web.StatusCode);
                     using var stream = e.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
                     var responces = reader.ReadToEnd();                   
@@ -126,6 +128,7 @@ namespace WpfClient
                 MessageBox.Show(ex.Message.ToString());
                 return false;
             }
+            //catch(WebException e)
         }
         
         
