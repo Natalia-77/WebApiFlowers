@@ -18,9 +18,21 @@ namespace WebFlower
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            //.ConfigureWebHostDefaults(webBuilder =>
+            //{
+            //    webBuilder.UseStartup<Startup>().UseKestrel(o => o.Limits.MaxRequestBodySize = 157286400) ;
+
+            //});
+
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder
+                .ConfigureKestrel(serverOptions =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    serverOptions.Limits.MaxRequestBodySize = 157286400;
+                })
+                .UseStartup<Startup>();
+            });
+
     }
 }

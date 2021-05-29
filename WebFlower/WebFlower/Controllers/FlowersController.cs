@@ -18,7 +18,8 @@ namespace WebFlower.Controllers
         //надає відомості про середовище веб-розміщення ,в якому виконується додаток.
         private IWebHostEnvironment _webHostEnvironment;
         private EFContext _context;
-        public string _url = "https://nat77.ga/img/";
+        //
+        //public string _url = "https://nat77.ga/img/";
         public FlowersController(EFContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
@@ -81,43 +82,31 @@ namespace WebFlower.Controllers
 
         [HttpPost]
         [Route("add")]
+        [RequestSizeLimit(100_000_000)]
         public IActionResult AddFlower([FromBody] FlowerView flow)
-        {
-            //if (!string.IsNullOrEmpty(file_selected))
-            //{
-
-            //    var extension = System.IO.Path.GetExtension(file_selected);
-            //    var imageName = System.IO.Path.GetFileNameWithoutExtension(file_selected) + extension;
-            //    var dir = Directory.GetCurrentDirectory();
-            //    var saveDir = System.IO.Path.Combine(dir, "Photos");
-            //    // if (!Directory.Exists(saveDir))
-            //    // Directory.CreateDirectory(saveDir);
-            //    var fileSave = System.IO.Path.Combine(saveDir, imageName);
-
-
-            //    var bmp = ResizeImage.ResizeOrigImg(
-            //        new Bitmap(System.Drawing.Image.FromFile(file_selected)), 75, 75);
-
-            //    bmp.Save(fileSave, ImageFormat.Jpeg);
-            //    File_name = fileSave;
-
-            //}
-
-            var dir = Directory.GetCurrentDirectory();
-            var dirSave = Path.Combine(dir, "Photos");
-            var imageName = Path.GetRandomFileName() + ".jpg";
-            var imageSaveFolder = Path.Combine(dirSave, imageName);
-            var imagen = flow.Image.Base64ToImage();
-            imagen.Save(imageSaveFolder,ImageFormat.Jpeg);
+        {        
+                      
+           
 
             _context.Flowers.Add(new Flower
             {
                 Name = flow.Name,
                 Family = flow.Family,
                 Weight = flow.Weight,
-                Image = _url+imageName
+                //Image = _url+imageName
+                Image=flow.Image
 
             });
+
+            var dir = Directory.GetCurrentDirectory();
+            var ext = Path.GetExtension(flow.Image);
+            var dirSave = Path.Combine(dir, "Photos");
+            var imageName = Path.GetRandomFileName() + ext;
+            var imageSaveFolder = Path.Combine(dirSave, imageName);
+            var imagen = flow.Image.Base64ToImage();
+            imagen.Save(imageSaveFolder, ImageFormat.Jpeg);
+
+
             _context.SaveChanges();        
             return Ok();
         }

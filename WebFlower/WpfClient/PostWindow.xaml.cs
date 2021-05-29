@@ -3,8 +3,6 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,7 +33,7 @@ namespace WpfClient
         //Кнопка для вибору фото
         private void btn_select_photo(object sender, RoutedEventArgs e)
         {
-            //Bitmap image;
+            
             OpenFileDialog dlg = new OpenFileDialog
             {
                 Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;" +
@@ -106,6 +104,7 @@ namespace WpfClient
                 {
                     
                     HttpWebResponse web= (HttpWebResponse)response;
+                  
                     MessageBox.Show("Error-->>>" + web.StatusCode);
                     using var stream = e.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
@@ -128,7 +127,7 @@ namespace WpfClient
                 MessageBox.Show(ex.Message.ToString());
                 return false;
             }
-            //catch(WebException e)
+            
         }
         
         

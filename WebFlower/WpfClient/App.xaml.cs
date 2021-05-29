@@ -45,13 +45,11 @@ namespace WpfClient
            // var connect = Configuration.GetConnectionString("ServerUrl");
            var url = Configuration.GetSection("Url").Value;
             MessageBox.Show(url);
-            //MainWindow window = new MainWindow();
-            //window.Show();
+           
         }
         private void ConfigureServices(IServiceCollection services)
         {
-            // ...
-            //services.AddTransient(typeof(Configuration));
+           
             services.AddTransient(typeof(MainWindow));
         }
     }
