@@ -82,12 +82,10 @@ namespace WebFlower.Controllers
 
         [HttpPost]
         [Route("add")]
-        [RequestSizeLimit(100_000_000)]
+        
         public IActionResult AddFlower([FromBody] FlowerView flow)
-        {        
-                      
+        {                              
            
-
             _context.Flowers.Add(new Flower
             {
                 Name = flow.Name,
